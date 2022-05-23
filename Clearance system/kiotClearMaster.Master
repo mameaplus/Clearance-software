@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="kiotClearMaster.master.cs" Inherits="ClearanceSystem.kiotClearMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="WebBeauty/css/Mycss.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+
+
+        <div class="Cont">
+            <div class="banner">
+                <asp:ContentPlaceHolder ID="banner" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="SideBar">
+                <asp:ContentPlaceHolder ID="SideBar" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="Body">
+                <asp:ContentPlaceHolder ID="Body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="footer">
+            </div>
+
+
+        </div>
+
+    </form>
+</body>
+</html>

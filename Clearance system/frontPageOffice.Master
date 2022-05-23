@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="frontPageOffice.master.cs" Inherits="ClearanceSystem.frontPageOffice" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+
+
+    <meta charset='utf-8' />
+    <title>Home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- JavaScript-->
+
+    <script src="WebBeauty/MasterJS/script.js"></script>
+    <script src="WebBeauty/MasterJS/jquery-latest.min.js"></script>
+    <script src="WebBeauty/js/bootstrap.min.js"></script>
+    <script src="WebBeauty/js/jquery.min.js"></script>
+    <!-- CSS style sheet-->
+    <link href="WebBeauty/css/bootstrap.min.css" rel="stylesheet" />
+    <%--<link href="WebBeauty/css/Mycss.css" rel="stylesheet" />--%>
+    <link href="WebBeauty/MasterCss/CssA1.css" rel="stylesheet" />
+    <link href="WebBeauty/MasterCss/styles.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+        <div class="Container">
+
+            <div style="" class="banner">
+                <div style="" class="EmblemImg">
+                </div>
+                <div style="" class="RealBanner" dir="ltr">
+                </div>
+            </div>
+
+
+            <div class="sideNav">
+                <asp:ContentPlaceHolder ID="sideNav"  runat="server">
+                  </asp:ContentPlaceHolder>
+               
+            </div>
+            <div class="body">
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+ 
+            <div class="footer">
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+ 
+</body>
+</html>

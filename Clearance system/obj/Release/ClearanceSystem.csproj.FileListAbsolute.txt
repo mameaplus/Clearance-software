@@ -1,0 +1,5 @@
+E:\Final project implemntation Don't Delete it\ClearanceSystem\ClearanceSystem\bin\ClearanceSystem.dll
+E:\Final project implemntation Don't Delete it\ClearanceSystem\ClearanceSystem\bin\ClearanceSystem.pdb
+E:\Final project implemntation Don't Delete it\ClearanceSystem\ClearanceSystem\obj\Release\ClearanceSystem.dll
+E:\Final project implemntation Don't Delete it\ClearanceSystem\ClearanceSystem\obj\Release\ClearanceSystem.pdb
+E:\Final project implemntation Don't Delete it\ClearanceSystem\ClearanceSystem\obj\Release\ClearanceSystem.csprojResolveAssemblyReference.cache

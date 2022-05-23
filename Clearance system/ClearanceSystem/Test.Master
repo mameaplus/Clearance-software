@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Test.master.cs" Inherits="ClearanceSystem.Test" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>CDE</title>
+    <script type="text/javascript" src="MainCssJS/jquery-1.3.2.min.js"></script>
+ 
+    <script type="text/javascript">
+        function mainmenu() {
+            $(" #nav ul ").css({ display: "none" }); // Opera Fix
+
+            $(" #nav li").hover(function () {
+                $(this).find('ul:first').css({ visibility: "visible", display: "none" }).show(400);
+            }
+            , function () {
+                $(this).find('ul:first').css({ visibility: "hidden" });
+            });
+        }
+
+        $(document).ready(function () {
+            mainmenu();
+        });
+    </script>
+<link href="MainCssJS/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrapper">
+        <div id="banner">
+        </div>
+        <div id="navigation">
+            <ul id="nav">
+                <li><a id="A1" href="Home.aspx" runat="server">Home</a></li>
+
+                <li><a href="#">Programs</a>
+                    <ul>
+                        <li><a id="A5" href="Programs.aspx" runat="server">Enginerig</a></li>
+                        <li><a id="A6" href="Programs.aspx" runat="server">Infromatics</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Join Now</a></li>
+                <li><a href="#">Users</a>
+                      <ul>
+                        <li><a id="b1" href="~/Staff/Staff.aspx" runat="server">Staff</a></li>
+                        <li><a id="b2" href="~/Student/Student.aspx" runat="server">Student</a></li>
+                        <li><a id="A2" href="~/Admin/Admin.aspx" runat="server">Admin</a></li>
+                    </ul>
+                </li>
+                 <li><a href="#">About</a>
+                      <ul>
+                        <li><a id="A3" href="Vision.aspx" runat="server">Vision</a></li>
+                        <li><a id="A4" href="Vision.aspx" runat="server">Mission</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                 </li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div id="content_area">
+            <div id="coninside">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                 
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="sidebar">
+            <asp:ContentPlaceHolder ID="sideNav" runat="server">
+              
+                <p>
+                    &nbsp;</p>
+              
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            <p>All Rights reserved.</p>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

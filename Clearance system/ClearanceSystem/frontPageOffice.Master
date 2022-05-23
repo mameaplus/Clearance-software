@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="frontPageOffice.master.cs" Inherits="ClearanceSystem.frontPageOffice" %>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>CDE</title>
+    <script type="text/javascript" src="MainCssJS/jquery-1.3.2.min.js"></script>
+
+    <script type="text/javascript">
+        function mainmenu() {
+            $(" #nav ul ").css({ display: "none" }); // Opera Fix
+
+            $(" #nav li").hover(function () {
+                $(this).find('ul:first').css({ visibility: "visible", display: "none" }).show(400);
+            }
+            , function () {
+                $(this).find('ul:first').css({ visibility: "hidden" });
+            });
+        }
+
+        $(document).ready(function () {
+            mainmenu();
+        });
+    </script>
+    <link href="WebBeauty/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="MainCssJS/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="banner">
+        </div>
+
+
+        <div id="content_area">
+            <div id="coninside">
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="sidebar">
+            <asp:ContentPlaceHolder ID="sideNav" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                All Rights reserved.
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+
+</body>
+</html>

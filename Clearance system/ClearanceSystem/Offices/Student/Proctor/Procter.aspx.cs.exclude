@@ -1,0 +1,157 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI.HtmlControls;
+namespace ClearanceSystem
+{
+
+    /********************************************************************\
+     * Hello this code is for proctor of the dorm                       *
+     * to make or to identify the procto block we                       *
+     * use the proctor datatable in it it has proctor==>>block number   *
+    \*******************************************************************/
+
+    public partial class Procter : System.Web.UI.Page
+    {
+        Return rtn;
+
+        public string state = "panel-collapse collapse";
+        protected void Page_Load(object sender, EventArgs e)
+        {
+           
+            tableLoad();
+
+        }
+
+        protected void Load_Click(object sender, EventArgs e)
+        {
+            state = "collapse in";
+            DataItem di = new DataItem();
+            di.str1 = "16";
+            di.str2 = DormNum.Text;
+            Session["DormNum"] = di.str2;
+            rtn = new Student().LoadDetail(di, "Procter");
+            table(rtn);
+        }
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < ((DataSet)Session["DormDet"]).Tables[0].Rows.Count; i++)
+            {
+                //get student id and the statues of the student
+                DataItem di = new DataItem();
+                if (((CheckBox)FindControl("cbox" + i)).Checked)
+                {
+                    di.str1 = ((HtmlTableCell)FindControl("name" + i)).InnerText;
+                    di.str2 = "NotClear";
+                    di.str3 = (string)Session["DormNum"];
+                    di.str4 = "16";
+                    new Record().RecordForClear(di, "Procter");
+                }
+
+            }
+            state = "collapse in";
+        }
+        Return table(Return rtn)
+        {
+
+            if (!rtn.Bool)
+            {
+                wStud.Text = "No dorm with this dorm number ";
+                wStud.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                Session["DormDet"] = rtn.ds;
+                int i;
+                for (i = 0; i < ((DataSet)Session["DormDet"]).Tables[0].Rows.Count; i++)
+                {
+                    ((HtmlTableCell)FindControl("id" + i)).InnerText = (string)((DataSet)Session["DormDet"]).Tables[0].Rows[i][0];
+                    ((HtmlTableCell)FindControl("Name" + i)).InnerText = (string)((DataSet)Session["DormDet"]).Tables[0].Rows[i][1];
+                    Image img = ((Image)FindControl("photo" + i));
+                    img.ImageUrl = (string)((DataSet)Session["DormDet"]).Tables[0].Rows[i][2];
+                    img.AlternateText = (string)((DataSet)Session["DormDet"]).Tables[0].Rows[i][1];
+                    ((HtmlTableRow)FindControl("row" + i)).Visible = true;
+
+                }
+                int x = i;
+
+                for (i = x; i < 10; i++)
+                {
+                   ((HtmlTableRow)FindControl("row" + i)).Visible = false;
+                   
+                }
+            }
+            return rtn;
+        }
+        void tableLoad()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+
+                HtmlTableRow row = new HtmlTableRow();
+                row.ID = "row" + i;
+                //    row.CssClass = "success";   
+                //FOR MATERIAL ID
+                HtmlTableCell cell0 = new HtmlTableCell();
+                cell0.InnerText = "ID" + i;
+                // cell0.Style =  "auto-style4";
+                cell0.ID = "id" + i;
+                row.Cells.Add(cell0);
+                //for name of material
+
+                HtmlTableCell cell2 = new HtmlTableCell();
+                cell2.InnerText = "Name" + i;
+                // cell0.Style =  "auto-style4";
+                cell2.ID = "Name" + i;
+                row.Cells.Add(cell2);
+
+                HtmlTableCell cell1 = new HtmlTableCell();
+                Image img = new Image();
+                img.ImageUrl = "";
+                img.ID = "photo"+i;
+                img.AlternateText = "Name" + i;
+                img.Width = 50; img.Height = 50;
+                // cell0.Style =  "auto-style4";
+                cell1.ID = "" + i;
+                cell1.Controls.Add(img);
+                row.Cells.Add(cell1);
+
+                HtmlTableCell cell3 = new HtmlTableCell();
+                CheckBox cbox = new CheckBox();
+                cbox.ID = "cbox" + i;
+
+                cell3.Controls.Add(cbox);
+
+                cell3.ID = "clear" + i;
+                row.Cells.Add(cell3);
+
+                /////////////////////////////////////
+                //if (max <= 0) tb.Enabled = false; //
+                //else tb.Enabled = true;          //
+                //cell3.Controls.Add(tb);         //
+                ///////////////////////////////////
+
+                // Add the TableRow to the Table
+
+                StudDetTbl.Rows.Add(row);
+            }
+        }
+        int getMaxDormStud() {
+            int max=0;
+            using (SqlConnection con = new SqlConnection()) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.CommandText = "";
+                    cmd.Connection = con;
+                   max=(int)cmd.ExecuteScalar();
+                }
+            }
+            return max;
+        }
+    }
+}
